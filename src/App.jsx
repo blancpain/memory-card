@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Header from "./components/Header";
 import Card from "./components/Card";
+import LoadingAnimation from "./components/LoadingAnimation";
 
 function App() {
   const [allCards, setAllCards] = useState([]);
@@ -9,12 +10,15 @@ function App() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [bestScore, setBestScore] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getPics() {
       const response = await fetch("http://shibe.online/api/shibes?count=30");
       const data = await response.json();
       setAllCards(data);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      setIsLoading(false);
     }
     getPics();
   }, []);
@@ -71,6 +75,7 @@ function App() {
 
   return (
     <div className="content">
+      {isLoading && <LoadingAnimation />}
       <Header currentScore={currentScore} bestScore={bestScore} />
       <main>{allCardElements}</main>
     </div>
