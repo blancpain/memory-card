@@ -43,8 +43,11 @@ function App() {
     const { id } = e.target;
 
     if (selectedCards.includes(id)) {
-      setBestScore(currentScore);
+      if (currentScore > bestScore) {
+        setBestScore(currentScore);
+      }
       setCurrentScore(0);
+      setSelectedCards([]);
       generateRandomCards();
     } else {
       setSelectedCards((prevState) => [...prevState, id]);
