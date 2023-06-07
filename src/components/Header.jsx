@@ -1,4 +1,5 @@
-export default function Header() {
+// eslint-disable-next-line react/prop-types
+export default function Header({ currentScore, bestScore }) {
   return (
     <nav className="header">
       <div className="header--title-container">
@@ -8,8 +9,8 @@ export default function Header() {
         </h3>
       </div>
       <div className="header--scoreboard">
-        <p className="score">Current score: 0</p>
-        <p className="score">Best score: 0</p>
+        <p className="score">Current score: {currentScore}</p>
+        <p className="score">Best score: {bestScore}</p>
       </div>
     </nav>
   );
