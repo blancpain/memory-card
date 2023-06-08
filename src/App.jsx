@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     async function getPics() {
-      const response = await fetch("http://shibe.online/api/shibes?count=30");
+      const response = await fetch("https://shibe.online/api/shibes?count=30");
       const data = await response.json();
       setAllCards(data);
       await new Promise((resolve) => setTimeout(resolve, 3000));
